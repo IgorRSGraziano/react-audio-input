@@ -30,6 +30,16 @@ function AudioRecorder({ onChange, defaultValue }: Props) {
 	const startRecording = async () => {
 		setIsRecording(true);
 		setTimer({ minutes: 0, seconds: 0 });
+		intervalRef.current = setInterval(() => {
+			setTimer((timer) => {
+				timer = timer || { minutes: 0, seconds: 0 };
+				if (timer.seconds >= 59) {
+					return { minutes: timer.minutes + 1, seconds: 0 };
+				} else {
+					return { ...timer, seconds: timer.seconds + 1 };
+				}
+			});
+		}, 1000);
 		// ONSTART
 	};
 
@@ -69,7 +79,7 @@ function AudioRecorder({ onChange, defaultValue }: Props) {
 							className="rounded-full p-4 flex items-center justify-center cursor-pointer border-2 text-wpp-icon"
 						>
 							{/* <FaRegFileAudio className="h-6 w-6" /> */}
-                            UPLOAD
+							UPLOAD
 						</div>
 						<input
 							type="file"
@@ -95,7 +105,7 @@ function AudioRecorder({ onChange, defaultValue }: Props) {
 							}}
 						>
 							{/* <IoMdTrash className="h-6 w-6" /> */}
-                            EXCLUIR
+							EXCLUIR
 						</div>
 					)}
 				</div>
