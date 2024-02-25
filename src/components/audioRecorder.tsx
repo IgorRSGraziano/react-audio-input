@@ -3,6 +3,10 @@ import React from "react";
 type Props = {
 	onChange?: (audioURL: Nullable<string>) => void;
 	defaultValue?: Nullable<string>;
+	onRecordStart?: () => void;
+	onRecordStop?: () => void;
+	enableUpload?: boolean;
+	onUpload?: (file: File) => void;
 };
 
 type Time = {
@@ -10,7 +14,7 @@ type Time = {
 	seconds: number;
 };
 
-function AudioRecorder({ onChange, defaultValue }: Props) {
+function AudioRecorder({ onChange, defaultValue, enableUpload, onUpload, onRecordStart, onRecordStop }: Props) {
 	const [isRecording, setIsRecording] = React.useState(false);
 	const [timer, setTimer] = React.useState<Nullable<Time>>(null);
 	const [audioURL, setAudioURL] = React.useState<string | null>(defaultValue || null);
