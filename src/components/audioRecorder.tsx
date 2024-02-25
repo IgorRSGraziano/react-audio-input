@@ -56,16 +56,11 @@ function AudioRecorder({ onChange, defaultValue, enableUpload, onUpload, onRecor
 	};
 
 	return (
-		<div className="flex gap-2 items-start">
-			<div className="flex flex-col gap-2 items-center justify-start">
-				<div className="flex items-start">
-					<div className="flex flex-col items-center">
-						<div
-							onClick={isRecording ? stopRecording : startRecording}
-							data-tooltip-id="gen"
-							data-tooltip-content={isRecording ? "Parar gravação" : "Iniciar gravação"}
-							className={`rounded-full p-4 flex items-center justify-center cursor-pointer border-2 ${isRecording ? "bg-wpp-ptt-draft-button-send text-wpp-primary-strong" : "text-wpp-icon"}`}
-						>
+		<div>
+			<div>
+				<div>
+					<div>
+						<div onClick={isRecording ? stopRecording : startRecording}>
 							{/* {isRecording ? <AiOutlineAudio className="h-6 w-6" /> : <AiFillAudio className="h-6 w-6" />} */}
 							{isRecording ? "PARAR DE GRAVAR" : "GRAVAR"}
 						</div>
@@ -76,12 +71,7 @@ function AudioRecorder({ onChange, defaultValue, enableUpload, onUpload, onRecor
 						) : null}
 					</div>
 					<div>
-						<div
-							data-tooltip-id="gen"
-							data-tooltip-content="Fazer upload de um arquivo de áudio"
-							onClick={() => inputRef.current?.click()}
-							className="rounded-full p-4 flex items-center justify-center cursor-pointer border-2 text-wpp-icon"
-						>
+						<div onClick={() => inputRef.current?.click()}>
 							{/* <FaRegFileAudio className="h-6 w-6" /> */}
 							UPLOAD
 						</div>
@@ -101,9 +91,6 @@ function AudioRecorder({ onChange, defaultValue, enableUpload, onUpload, onRecor
 					</div>
 					{audioURL && (
 						<div
-							data-tooltip-id="gen"
-							data-tooltip-content="Remover"
-							className="rounded-full p-4 flex items-center justify-center cursor-pointer border-2 text-wpp-ptt-draft-button-stop"
 							onClick={() => {
 								setAudioURL(null);
 							}}
@@ -117,7 +104,7 @@ function AudioRecorder({ onChange, defaultValue, enableUpload, onUpload, onRecor
 			<div>
 				{audioURL && (
 					<>
-						<audio controls src={audioURL} className="max-w-full" />
+						<audio controls src={audioURL} />
 					</>
 				)}
 			</div>
